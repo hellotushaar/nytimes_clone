@@ -1,0 +1,1089 @@
+
+@import 'variables';
+@import 'helperclasses';
+@import 'mixins';
+
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-size: 100%;
+	-webkit-text-size-adjust: none;
+}
+
+
+
+// main header styles ----------------------------------
+
+header.main-header {
+
+	.htrom {
+		padding: 8px 0;
+		@include border(bottom);
+
+		.header-logo {
+			line-height: 1;
+			font-family: $imperial;
+			font-size: 2.2rem;
+		}
+		.column span {
+			display: inline-block;
+			padding: 5px 10px;
+			background:
+			whitesmoke;
+			border-radius: 3px;
+			cursor: pointer;
+			transition: 0.2s ease-in-out;
+		}
+
+		// responsive 
+		@include device(computer) {
+			display: none;
+		}
+	}
+
+	.hmrom {
+		padding: 8px 0;
+		@include doubleBorder(bottom);
+
+		.column {
+			&:nth-child(3) {
+				color: rgba($black, 0.5);
+				a {
+					color: $themeColor;
+					font-weight: bold;
+				}
+			}
+			&:nth-child(1) {
+				@include device(mobile) {
+					display: none !important;
+				}
+			}
+			&:nth-child(2) {
+				@include device(mobile) {
+					align-self: flex-start;
+					text-align: left !important;
+				}
+			}
+		}
+
+		// responsive 
+		@include device(computer) {
+			display: none;
+		}
+	}
+
+	.htr {
+		padding: 5px 0;
+		display: block;
+
+		.htrsan {
+
+			span {
+				display: inline-block;
+				padding: 5px 10px;
+				background: darken($white, 4);
+				border-radius: 3px;
+				margin-right: 10px;
+				cursor: pointer;
+				transition: 0.2s ease-in-out;
+
+				&:hover {
+					background: darken($white, 8);
+				}
+			}
+			.hsbx {
+				display: none;
+
+				&.active {
+					display: inline-flex;
+				}
+
+				input {
+					padding: 5px 10px;
+					border: 1px solid rgba($black, 0.2);
+					border-radius: 3px;
+
+					&::placeholder {
+						font-size: 0.7rem;
+					}
+
+					&[type="submit"] {
+						background: $themeColor;
+						color: $white;
+						border: 1px solid $themeColor;
+						margin-left: 5px;
+						cursor: pointer;
+					}
+					&:hover {
+						border: 1px solid rgba($themeColor, 0.6);
+					}
+				}
+			}
+		}
+		.htrsl {
+			a {
+				display: inline-block;
+				color: rgba($black, 0.6);
+				margin: 5px;
+				text-transform: uppercase;
+				font-size: 0.8rem;
+				transition: 0.2s;
+
+				&.active {
+					color: rgba($black, 1);
+					font-weight: bold;
+				}
+				&:hover {
+					color: $black;
+				}
+			}
+		}
+
+		.htrbtns .btn {
+			display: inline-block;
+			padding: 5px 20px;
+			margin-left: 10px;
+			border: thin solid $themeColor;
+			border-radius: 3px;
+			background: $themeColor;
+			color: $white;
+			transition: 0.2s ease-in-out;
+
+			&:hover {
+				background: darken($themeColor, 5);
+			}
+		}
+
+		// responsive 
+		@include device(tablet) {
+			display: none;
+		}
+	}
+
+	.hmr {
+		padding: 5px 0;
+		@include border(bottom);
+
+		.header-logo {
+			display: inline-block;
+			font-family: $titleFont;
+			font-size: 3.5rem;
+			font-weight: 500;
+			color: $black;
+		}
+		.hmrtp a {
+			color: $black;
+			font-weight: bold;
+		}
+
+		// responsive 
+		@include device(tablet) {
+			display: none;
+		}
+	}
+
+	@keyframes headerNav {
+		from {
+			top: -100%;
+		}
+		to {
+			top: 0;
+		}
+	}
+	.header-nav {
+		text-align: center;
+		font-size: 0;
+		padding: 5px 0;
+		border-bottom: 1px solid lighten($black, 10);
+		line-height: 1;
+
+		&.fixed {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			z-index: 99;
+			background: $white;
+			border-bottom: none;
+			box-shadow: 0 2px 5px rgba($black, 0.2);
+			transition: all 0.4s ease-in-out;
+			animation: headerNav 0.4s 1 alternate;
+		}
+
+		ul {
+			list-style: none;
+
+			li {
+				display: inline-block;
+		
+				a {
+					display: inline-block;
+					font-size: 0.8rem;
+					margin: 0 5px;
+					padding: 6px 8px;
+					color: $black;
+					transition: 0.2s;
+
+					&:hover {
+						background: darken($white, 8);
+					}
+				}
+			}
+		}
+
+		// responsive
+		@include device(tablet) {
+			display: none;
+		}
+	}
+
+	.side-menu {
+		position: fixed;
+		top: 0;
+		left: -220px;
+		width: 220px;
+		height: 100%;
+		background: $white;
+		box-shadow: 0 0 10px rgba($black, 0.2);
+		z-index: 9;
+		visibility: hidden;
+		transition: all 0.2s ease-in-out;
+
+		&.active {
+			left: 0;
+			visibility: visible;
+		}
+
+		ul {
+			list-style: none;
+			padding: 20px 20px;
+			font-size: 0;
+
+			li {
+				position: relative;
+
+				&:hover .smdpdn {
+					display: block;
+				}
+
+				a {
+					position: relative;
+					display: block;
+					color: $black;
+					font-size: 0.9rem;
+					font-weight: bold;
+					padding: 6px 10px;
+					border-radius: 3px;
+
+					&:hover  {
+						background: rgba($themeColor, 0.1);	 
+					}
+
+					i {
+						position: absolute;
+						right: 10px;
+						top: 50%;
+						color: rgba($black, 0.5);
+						transform: translateY(-50%);
+					}
+				}
+				.smdpdn {
+					position: absolute;
+					top: -10px;
+					left: 100%;
+					left: calc(100% - 10px);
+					width: 220px;
+					border: thin solid rgba($black, 0.2);
+					border-radius: 5px;
+					z-index: 9;
+					background: $white;
+					display: none;
+
+					&::after {
+						content: '';
+						position: absolute;
+						top: 10px;
+						right: 100%;
+						width: 0;
+						height: 0;
+						border-top: 15px solid transparent;
+						border-right: 15px solid $white;
+						border-bottom: 15px solid transparent;
+					}
+				}
+			}
+		}
+	}
+	.sideMenuOverlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: calc(100vw - 220px);
+		width: 100%;
+		height: 100%;
+		z-index: 8;	
+		display: none;
+
+		&.active {
+			display: block;
+		}
+	}
+
+	.news-under-nav {
+		display: none;
+		padding: 10px 0;
+		@include doubleBorder;
+
+		.each-under-nav-news {
+			display: flex;
+
+			.img-thumb {
+				margin-right: 10px;
+				// width: 30%;
+				max-width: 60px;
+
+				img {
+					max-width: 100%;
+				}
+			}
+			.info {
+				color: $black;
+				font-family: $bodyFont;
+				transition: 0.2s ease-in-out;
+
+				&:hover {
+					color: rgba($black, 0.7);
+				}
+
+				.title {
+					font-weight: 700;
+					font-size: 1rem;
+					margin-bottom: 0;
+				}
+				.description {
+					font-size: 0.9rem;
+					font-weight: 500;
+				}
+			}
+		}
+	}
+}
+
+
+
+// main and top news -----------------------------------
+
+main.main-top-news {
+	@include doubleBorder;
+	@include p(y);
+
+	.mtnlc {
+		@include border(right);
+
+		// responsive
+		@include device(tablet) {
+			border-right: none;
+			@include doubleBorder;
+		}
+	}
+
+	.main-news-section {
+		@include p(r);
+
+		.column.One {
+			position: relative;
+
+			&::after {
+				@include bor;
+				width: 320%;
+			}
+		}
+		.column.Two {
+			@include p(b);
+
+			.msfri {
+				@include p(l);
+
+				@include device(mobile) {
+					@include p0(l);
+					@include p(t);
+				}
+			}
+		}
+		.column.Three {
+			position: relative;
+			@include p(y);
+			@include p(r);
+
+			&::before {
+				@include borr;
+				height: calc(100% - 2rem);
+			}
+			&::after {
+				@include bor;
+				width: 200%;
+			}
+		}
+		.column.Four {
+			@include p(y);
+			@include p(l);
+		}
+		.column.Five {
+			position: relative;
+			@include p(y);
+			@include p(r);
+
+			&::before {
+				@include borr;
+				height: calc(100% - 2rem);
+			}
+			&::after {
+				@include bor;
+				width: 160%;
+			}
+		}
+		.column.Six {
+			@include p(y);
+			@include p(l);
+		}
+		.column.Seven {
+			position: relative;
+			@include p(y);
+			@include p(r);
+			
+			&::before {
+				@include borr;
+				height: calc(100% - 2rem);
+			}
+			&::after {
+				@include bor;
+				width: 320%;
+			}
+		}
+		.column.Eight {
+			padding: 1rem !important;
+		}
+		.column.Nine {
+			@include p(y);
+		}
+		.column.Ten {
+			position: relative;
+			@include p(y);
+
+			&::after {
+				@include bor;
+				width: 100%;
+			}
+		}
+		.column.Eleven {
+			position: relative;
+			@include p(y);
+			@include p(r);
+			
+			&::before {
+				@include borr;
+				height: calc(100% - 2rem);
+			}
+			&::after {
+				@include bor;
+				width: 200%;
+			}
+		}
+		.column.Twelve {
+			@include p(y);
+			@include p(l);
+		} 
+		.column.Thirteen {
+			position: relative;
+			@include p(y);
+			@include p(r);
+			
+			&::before {
+				@include borr;
+				height: calc(100% - 2rem);
+			}
+		} 
+		.column.Fourteen {
+			@include p(y);
+			@include p(l);
+		} 
+
+		.mssr {
+			@include border(bottom);
+			@include p(y);
+
+			.news-body.one {
+				@include p(r);
+			}
+			.news-body.two {
+				@include border(left);
+				@include p(l);
+			}
+		}
+		.msthr {
+			@include border(bottom);
+			@include p(y);
+			
+			.column:nth-child(1) {
+				@include border(right);
+				@include p(r);
+			}
+			.column:nth-child(2) {
+				@include p(l);
+			}
+		}
+		.msfor {
+			@include border(bottom);
+			@include p(y);
+
+			.news-body.two {
+				@include p(x);
+
+				@include device(mobile) {
+					@include p0(x);
+					@include p(y);
+				}
+			}
+		}
+		.msfivr {
+			@include border(bottom);
+			@include p(y);
+
+			.column:nth-child(2) {
+				@include p(l);
+
+				@include device(mobile) {
+					@include p0(l);
+					@include p(t);
+				}
+			} 
+		}
+		.mssxthr {
+			@include border(bottom);
+			@include p(y);
+
+			.column:nth-child(1) {
+				@include p(r);
+				@include border(right);
+			}
+			.column:nth-child(2) {
+				@include p(l);
+			}
+			.news-body {
+				&.two {
+					@include border(bottom);
+					@include p(b);
+				}
+				&.three {
+					@include p(t);
+				}
+			}
+		}
+		.mssvthr {
+			@include p(y);
+
+			.column:nth-child(1) {
+				@include p(r);
+				@include border(right);
+
+				@include device(mobile) {
+					border-right: none;
+				}
+			}
+			.news-body {
+				&.five {
+					@include p(l);
+
+					.post-title {
+						margin-top: 1rem;
+					}
+
+					@include device(mobile) {
+						@include p0(l);
+						@include p(t);
+					}
+				}
+				&.one, &.two, &.three {
+					@include border(bottom);
+				}
+				&.one {
+					@include p(b);
+				}
+				&.two, &.three {
+					@include p(y);
+				}
+				&.four {
+					@include p(t);
+				}
+			}
+		}
+
+		// responsive 
+		@include device(tablet) {
+			padding-right: 0 !important;
+		}
+	}
+
+	.main-news-aside {
+		@include p(l);
+
+		@include device(tablet) {
+			@include p0(l);
+			@include p(y);
+		}
+
+		.opinions-news {
+			@include doubleBorder;
+		}
+		.fopnws {
+			@include border(bottom);
+			@include p(b);
+
+			.news-thumb {
+				margin-bottom: 1rem;
+			}
+
+			.column {
+				@include device(tablet) {
+					text-align: left !important;
+					align-self: flex-start;
+				}
+			}
+		}
+		.sopns {
+			@include p(y);
+
+			.sopnsfc {
+				@include border(right);
+				@include p(r);
+
+				.each-news {
+					@include border(bottom);
+					@include p(y);
+
+					&:first-child {
+						@include p0(t);
+					}
+					&:last-child {
+						border-bottom: none;
+					}
+				}
+			}
+			.sopnssc {
+				@include p(l);
+				
+				.each-news {
+					@include border(bottom);
+					@include p(y);
+
+					&:first-child {
+						@include p0(t);
+					}
+					&:last-child {
+						border-bottom: none;
+					}
+				}
+			}
+		}
+
+		.editor-picked-news {
+			@include p(y);
+			
+			.edpn {
+				.news-body {
+					@include border(bottom);
+					@include p(y);
+					
+					&:first-child {
+						@include p0(t);
+					}
+					&:last-child {
+						border-bottom: none;
+					}
+					img {
+						width: 50%;
+					}
+
+					@include device(tablet) {
+						display: inline-block;
+						width: 100%;
+					}
+				}
+			}
+		}
+	}
+
+	// style overrides of semantic UI
+	.ui.grid > .column:not(.row), .ui.grid > .row > .column {
+		padding-left: 0;
+		padding-right: 0;
+	
+		&:first-child {
+			padding-left: 0;
+		}
+	
+		&:last-child {
+			padding-right: 0;
+		}
+	}
+}
+
+.news-body {
+
+	a {
+		transition: 0.2s ease-in-out;
+		&:hover {
+			opacity: 0.7;
+		}
+	}
+}
+
+
+
+// in other news section --------------------------------
+
+section.in-other-news {
+	@include doubleBorder;
+	@include p(y);
+
+	.ionfc {
+		@include p(r);
+
+		.news-body h2 {
+			margin-top: 1rem;
+		}
+
+		@include device(tablet) {
+			text-align: left;
+			align-self: flex-start;
+			@include border(bottom);
+			@include p(b);
+		}
+	}
+	.ionsc {
+		@include border(right);
+		@include border(left);
+		@include p(x);
+
+		.news-body {
+			@include border(bottom);
+			@include p(y);
+
+			&:first-child {
+				@include p0(t);
+			}
+			&:last-child {
+				border: none;
+			}
+			img {
+				width: 50%;
+			}
+
+			@include device(tablet) {
+				display: inline-block;
+				width: 100%;
+				margin-right: 1rem;
+			}
+		}
+
+		@include device(tablet) {
+			border-left: none;
+			@include p0(l);
+			margin-top: 1rem;
+		}
+		@include device(mobile) {
+			border-right: none;
+			@include p0(r);
+			margin-top: 1rem;
+		}
+	}
+	.ionthc {
+		@include p(l); 
+
+		.news-body {
+			@include border(bottom);
+			@include p(y);
+			
+			&:first-child {
+				@include p0(t);
+			}
+			&:last-child {
+				border-bottom: none;
+			}
+		}
+
+		@include device(tablet) {
+			// margin-top: 1rem;
+			@include p(t);
+		}
+		@include device(mobile) {
+			@include border(top);
+			@include p0(l); 
+		}
+	}
+}
+
+
+
+// science news section ----------------------------
+
+section.science-news {
+	@include doubleBorder;
+	@include p(y);
+
+	.snswrap {
+		margin: 0 -0.5rem;
+		display: flex;
+
+		.column {
+			padding: 0 0.5rem;
+
+			h2 {
+				margin-top: 0.5rem;
+			}
+
+			@include device(tablet) {
+				width: 50%;
+				margin-bottom: 1rem;
+			} 
+		}
+
+		@include device(tablet) {
+			flex-wrap: wrap;
+		} 
+	}
+} 
+
+
+
+// featured news section ----------------------------
+
+section.featured-news {
+	@include doubleBorder;
+	@include p(y);
+
+	.fnswrap {
+
+		.column:nth-child(1) {
+			@include p(r);
+			@include border(right);
+
+			.news-body {
+				@include p(y);
+				@include border(bottom);
+
+				&:first-child {
+					@include p0(t);
+				}
+				&:last-child {
+					border-bottom: none;
+				}
+			}
+
+			@include device(mobile) {
+				@include p0(r);
+				border-right: none;
+			}
+		}
+		.column:nth-child(2) {
+			@include p(x);
+			@include border(right);
+
+			h2 {
+				margin-top: 0.5rem;
+			}
+
+			@include device(tablet) {
+				border-right: none;
+				@include p0(r);
+			}
+
+			@include device(mobile) {
+				@include p0(x);
+				@include p(t);
+				@include border(top);
+			}
+		}
+		.column:nth-child(3) {
+			@include p(l);
+			
+			.news-body {
+				@include p(y);
+				@include border(bottom);
+
+				&:first-child {
+					@include p0(t);
+				}
+				&:last-child {
+					border-bottom: none;
+				}
+			}
+
+			@include device(tablet) {
+				border-right: none;
+				@include p0(l);
+				@include border(top);
+				@include p(t);
+				margin-top: 1rem;
+			}
+		}
+	}
+}
+
+
+
+// footer styles ------------------------------------
+
+footer { 
+	@include p(y);
+
+	h2 {
+		a {
+			font-family: $imperial;
+			font-size: 2rem;
+		}
+	}
+}
+
+.fmlist-mobile {
+	@include border(bottom);
+	@include p(t);
+	display: none;
+
+	.accordion {
+
+		.title {
+			@include border(top);
+			font-family: $bodyFont;
+			font-weight: 700;
+			font-size: 1rem;
+			text-transform: uppercase;
+			letter-spacing: 0.8px;
+		}
+		.content {
+			@include p0(y);
+
+			ul {
+				list-style: none;
+				display: flex;
+				flex-wrap: wrap;
+				padding-bottom: 0.5rem;
+				
+				li {
+					width: 50%;
+	
+					a {
+						font-size: 0.9rem;
+						line-height: 2.5;
+						text-transform: capitalize;
+	
+						&:hover {
+							text-decoration: underline;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	// responsive 
+	@include device(mobile) {
+		display: block;
+	}
+}
+
+.fmlist {
+	@include border(bottom);
+	@include p(y);
+
+	.fmlistwrap {
+		display: flex;
+		// justify-content: space-between;
+
+		.eachfmlist {
+			width: 16.66%;
+	
+			.fmlisttitle {
+				margin-bottom: 5px;
+				font-family: $bodyFont;
+				font-weight: 700;
+				font-size: 1rem;
+				text-transform: uppercase;
+				letter-spacing: 0.8px;
+			}
+			ul {
+				list-style: none;
+	
+				li {
+	
+					a {
+						font-size: 0.9rem;
+						line-height: 2;
+						text-transform: capitalize;
+	
+						&:hover {
+							text-decoration: underline;
+						}
+					}
+				}
+			}
+			&.last {
+				@include border(left);
+				@include p(l);
+				
+				ul {
+					@include p(b);
+	
+					&:last-child {
+						@include border(top);
+						@include p(t);
+					}
+				}
+			
+				@include device(mobile) {
+					@include p0(l);
+					border-left: none;
+				}
+			}
+			&:nth-child(1) {
+				margin-bottom: 1rem;
+			}
+			
+			@include device(mobile) {
+				width: 33.33%;
+			}
+		}
+
+		@include device(mobile) {
+			flex-wrap: wrap;
+		}
+	}
+
+	@include device(mobile) {
+		display: none;
+	}
+	
+}
+
+footer {
+
+	nav {
+		text-align: center;
+		@include p(y);
+
+		a {
+			font-size: 0.9rem;
+			font-family: $bodyFont;
+			color: rgba($black, 0.8);
+			margin: 0 5px;
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+}

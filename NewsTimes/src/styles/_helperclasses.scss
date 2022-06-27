@@ -1,0 +1,72 @@
+@import 'mixins';
+
+.wrapper {
+	width: 100%;
+	margin: 0 auto;
+}
+.post-title {
+	font-family: $titleFont;
+	font-size: 1.1rem;
+	font-weight: bold;
+	letter-spacing: 0.5px;
+	margin-bottom: 0.4rem;
+}
+.post-title-medium {
+	@extend .post-title;
+	font-size: 1.4rem;
+}
+.post-title-large {
+	@extend .post-title;
+	font-size: 1.7rem;
+	font-weight: 500;
+}
+.post-para {
+	font-family: 'imperial', serif;
+	font-size: 0.9rem;
+	letter-spacing: 0.1px;
+	color: #777777;
+}
+.post-timing {
+	font-family: $bodyFont;
+	font-size: 0.8rem;
+	font-weight: 500;
+	color: #999999;
+	margin-top: 5px;
+}
+.categ-name {
+	font-family: $titleFont;
+	font-size: 1.4rem;
+	font-weight: 500;
+	color: #121212;
+}
+
+
+// overrides ---------------------
+a {
+	color: $black;
+	&:hover {
+		color: initial;
+	}
+}
+.grid {
+	margin: 0 !important;
+}
+.row {
+	padding: 0 !important;
+}
+.ui.grid > .column:not(.row), .ui.grid > .row > .column {
+	// padding-left: 0;
+	// padding-right: 0;
+	padding: 0 0;
+
+	&:first-child {
+		padding-left: 0;
+	}
+
+	&:last-child {
+		padding-right: 0;
+	}
+}
+h2 {
+	margin: 0;
+}

@@ -1,0 +1,121 @@
+
+// paddings in news bodies -----------------
+
+@mixin p($direction) {
+	
+	@if $direction == 'x' {
+		padding: 0 1rem !important;
+	}
+	@if $direction == 'y' {
+		padding: 1rem 0 !important;
+	}
+	@if $direction == 't' {
+		padding-top: 1rem !important;
+	}
+	@if $direction == 'b' {
+		padding-bottom: 1rem !important;
+	}
+	@if $direction == 'l' {
+		padding-left: 1rem !important;
+	}
+	@if $direction == 'r' {
+		padding-right: 1rem !important;
+	}
+}
+@mixin p0($direction) {
+	
+	@if $direction == 'x' {
+		padding: 0 0 !important;
+	}
+	@if $direction == 'y' {
+		padding: 0 0 !important;
+	}
+	@if $direction == 't' {
+		padding-top: 0 !important;
+	}
+	@if $direction == 'b' {
+		padding-bottom: 0 !important;
+	}
+	@if $direction == 'l' {
+		padding-left: 0 !important;
+	}
+	@if $direction == 'r' {
+		padding-right: 0 !important;
+	}
+}
+
+
+
+// borders in news body ---------------------
+
+@mixin border($side) {
+
+	@if $side == bottom {
+		border-bottom: 1px solid rgba($black, 0.2);
+	}
+	@if $side == top {
+		border-top: 1px solid rgba($black, 0.2);
+	}
+	@if $side == right {
+		border-right: 1px solid rgba($black, 0.2);
+	}
+	@if $side == left {
+		border-left: 1px solid rgba($black, 0.2);
+	}
+}
+@mixin doubleBorder($side : bottom) {
+	
+	@if $side == bottom {
+		border-bottom: 4px double rgba($black, 0.8);
+	}
+	@if $side == top {
+		border-bottom: 4px double rgba($black, 0.8);
+	}
+	@if $side == right {
+		border-bottom: 4px double rgba($black, 0.8);
+	}
+	@if $side == left {
+		border-bottom: 4px double rgba($black, 0.8);
+	}
+}
+
+@mixin bor {
+	content: '';
+	position: absolute;
+	// width: 320%;
+	height: 1px;
+	background: rgba($black, 0.2);
+	top: 100%;
+	left: 0;
+}
+@mixin borr {
+	content: '';
+	position: absolute;
+	width: 1px;
+	background: rgba($black, 0.2);
+	top: 1rem;
+	right: 0;
+}
+
+
+
+// responsive viewports -------------------------
+ 
+@mixin device($type) {
+
+	@if $type == mobile {
+		@media only screen and (max-width: 767px) {
+			@content;
+		}
+	}
+	@if $type == tablet {
+		@media only screen and (max-width: 991px) {
+			@content;
+		}
+	}
+	@if $type == computer {
+		@media only screen and (min-width: 992px) {
+			@content;
+		}
+	}
+}
